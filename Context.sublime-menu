@@ -1,0 +1,4 @@
+[
+    { "caption": "-", "id": "show" },
+    { "command": "remote_diff_bcompare", "caption":"RemoteDiff-BCompare"}
+]

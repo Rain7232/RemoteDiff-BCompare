@@ -1,0 +1,8 @@
+{
+	// Define paths
+	"bcomapre": "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe",
+	"ftp_user": "xxx",
+	"ftp_server": "xlinux.xxx.com",
+	"remote_path": "/home/xxx/project/",
+	"local_path": "C:/project",
+}
