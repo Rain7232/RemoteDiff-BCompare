@@ -8,18 +8,20 @@ localFile = remoteFile = ""
 localPath = remotePath = ""
 ftpServer = ftpUser = ""
 bcompare = ""
+netDrive = ""
 
 def settings():
     return sublime.load_settings('RemoteDiff-BCompare.sublime-settings')
 
 def plugin_loaded() -> None:
     global localPath, remotePath
-    global ftpServer, ftpUser, bcompare
+    global ftpServer, ftpUser, bcompare, netDrive
     localPath = formatPath(settings().get("local_path"))
     remotePath = formatPath(settings().get("remote_path"))
     ftpServer = settings().get("ftp_server")
     ftpUser = settings().get("ftp_user")
     bcompare = settings().get("bcomapre")
+    netDrive = settings().get("network_drive")
 
 def formatPath(path):
     str = os.path.normpath(path)
@@ -32,7 +34,10 @@ def cmdBuild():
         sublime.error_message("Could not find local folder:"+localPath)
         return ""
     fileName = re.sub(localPath, "", formatPath(localFile))
-    remoteFile = 'ftp://%s@%s/%s%s'%(ftpUser, ftpServer, remotePath, fileName)
+    if netDrive != "":
+        remoteFile = '%s%s'%(netDrive, fileName)
+    else:
+        remoteFile = 'ftp://%s@%s/%s%s'%(ftpUser, ftpServer, remotePath, fileName)
     localFile = formatPath(localFile)
     cmd = '%s "%s" "%s"' % (bcompare, localFile, remoteFile)
     return cmd
