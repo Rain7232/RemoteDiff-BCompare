@@ -5,4 +5,5 @@
 	"ftp_server": "xlinux.xxx.com",
 	"remote_path": "/home/xxx/project/",
 	"local_path": "C:/project",
+	"network_drive": "",
 }
